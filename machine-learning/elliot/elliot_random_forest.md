@@ -1,5 +1,4 @@
-Decision Trees
-
+Random Forest
 
 #### What are the basic concepts? What problem does it solve?
 - Trees have a weakness in predictive learning: inaccuracy (not great with classifying new samples)
@@ -29,6 +28,7 @@ Decision Trees
 - Out of bag score is a way to validate random forests
 
 #### What is the cost function?
+-
 
 #### What are the advantages/disadvantages?
 Pros:

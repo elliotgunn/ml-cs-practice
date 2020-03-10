@@ -42,3 +42,5 @@ Notes from:
 [Cracking the DS phone interview](https://medium.com/@bruceyanghy/crack-the-machine-learning-phone-interview-guide-9e4dc316f65b)
 
 [StackExchange](https://stats.stackexchange.com/questions/335859/understanding-gradient-boosting)
+
+[In praise of gradient boosting](benkuhn.net/gbm/)

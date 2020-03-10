@@ -10,7 +10,7 @@ K-means Clustering
 #### What are the steps of the algorithm?
 1. Find k:
     - Plot to see if there are any patterns
-    - Elbow method: grid search k=1-10 to calculate sum of squares within each cluster.
+    - Elbow method: grid search k=1-10 to calculate sum of squares within each cluster
     - Or randomly choose k initial cluster centroid locations
 2. with these initial k centroids, repeat the following process:
     - each data point is assigned to a cluster centroid in order to minimize a WCSS objective function (within-cluster sum of squares)
@@ -33,7 +33,7 @@ Pros:
 - easily adapts to new examples
 
 Cons:
-- gets stuck in local minima, so your first result may not be the best one. Have to run it multiple times with different initial centroids and the one with the lowest error is chosen
+- centroids are picked randomly, so your first result may not be the best one. Have to run it multiple times with different initial centroids and the one with the lowest error is chosen
 - doesn't do well with outliers
 - have to pick optimal k-value manually
 - order of data impacts final results

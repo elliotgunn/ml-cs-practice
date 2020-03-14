@@ -41,7 +41,7 @@ Pros:
 
 Cons:  
 - Relatively inaccurate compared to other algorithms, better to use a RF
-- Tend to overfit
+- Tend to overfit (mitigate by tuning max_feature)
 
 Notes from:  
 [StatQuest: Decision Trees]( https://www.youtube.com/watch?v=7VeUPuFGJHk)

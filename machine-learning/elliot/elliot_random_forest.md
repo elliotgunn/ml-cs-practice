@@ -46,3 +46,7 @@ Notes from:
 [StatQuest: Decision Trees]( https://www.youtube.com/watch?v=7VeUPuFGJHk)
 
 [Cracking the DS phone interview](https://medium.com/@bruceyanghy/crack-the-machine-learning-phone-interview-guide-9e4dc316f65b)
+
+[Very good guide to hyperparameter tuning in RF](https://towardsdatascience.com/hyperparameter-tuning-the-random-forest-in-python-using-scikit-learn-28d2aa77dd74)
+
+[StackOverflow: what hyperparamters are worth tuning](https://stackoverflow.com/questions/36107820/how-to-tune-parameters-in-random-forest-using-scikit-learn)

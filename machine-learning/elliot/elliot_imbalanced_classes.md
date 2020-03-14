@@ -17,28 +17,36 @@ Adjust thresholds/cutoffs: most standard binary classification models (logistic 
 
 Keep in mind the impact to the business value. Does this actually affect business metrics? That should orient the approach to everything above. What is the cost of false positives vs. false negatives? The optimization metric should not be accuracy. This is known as cost sensitivity training, as you want to optimize a cost or loss function that differentially weights specific types of errors.
 - Use a confusion matrix to compare the predictive performances (especially useful for multi-class data)
-- Use the [classification_report](http://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html) to look at precision, recall, and f1-score (but don't use F1 score as its the mean of precision and recall, but they're rarely equally important)
+- Use the [`classification_report`](http://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html) to look at precision, recall, and f1-score (but don't use F1 score as its the mean of precision and recall, but they're rarely equally important)
 - Use a precision-recall curve instead of ROC
 - Read up more about why accuracy is not a good answer for real world problems: [Interview Question: What Machine Learning Metric to Use](https://alexgude.com/blog/machine-learning-metrics-interview/)
+- Use probability estimates instead of hard classification labels (`score`, `predict`): `proba` or `predict_proba`
 
 If the issue is that the training data is skewed but not during production, then take steps to ensure that the training data reflects real-world distribution:
-- resampling: downsampling/upsampling plus calibration to adjust the probability scores outputted by the model ([example with working code](https://jmetzen.github.io/2015-04-14/calibration.html))
-- class weights: increase weights for the samples in the minority classes
+- resampling: downsampling/upsampling plus calibration to adjust the probability scores outputted by the model ([example with working code](https://jmetzen.github.io/2015-04-14/calibration.html)), synthesizing (SMOTE)
+- class weights: increase weights for the samples in the minority classes (`class_weight`)
 - picking the right model:
     - GBC (or boosting algorithms in general) directly address imbalance by sequentially training based on incorrectly classified examples
     - Logistic regression handles imbalanced data well (see: [Frank Harrell](https://www.fharrell.com/post/classification/), [Frank Harrell explained](https://stats.stackexchange.com/questions/403239/how-does-logistic-regression-elegantly-handle-unbalanced-classes))
 
-Questions to ask for more information:
+Switch to an anomaly detection framework.
+
+## Questions to ask for more information:
 - Why is the model doing badly in production? Outliers? Bad training data? Is the training data the same distribution as the one seen in production?
 - Did you pick the right model for binary classification? SVM is more robust as not just fitting a single hyperplane but maximizing the margins. If the dataset is too small, try a Bayesian approach with a strong prior. Try [thresholding method (with code)](https://mateuszbuda.github.io/2018/09/15/thresholding.html).
 - Feature engineering: did you pick the right features?
 - What does a false positive cost my user? How does that compare to the cost of a false negative?
 
-Notes taken from:
+### Notes taken from:
 - [Reddit](https://www.reddit.com/r/MachineLearning/comments/c1vxoc/d_17_interviews_4_phone_screens_13_onsite_5/)
 - [StackExchange](https://datascience.stackexchange.com/questions/1107/quick-guide-into-training-highly-imbalanced-data-sets)
 - [Applied Predictive Modeling, chapter 16](http://appliedpredictivemodeling.com/)
 - [Practical tips for class imbalance in binary classification](https://towardsdatascience.com/practical-tips-for-class-imbalance-in-binary-classification-6ee29bcdb8a7)
 - [Damage Caused by Classification Accuracy and Other Discontinuous Improper Accuracy Scoring Rules](https://www.fharrell.com/post/class-damage/)
 - This is a great case study of dealing with imbalanced data in the real world, hits all the points detailed above: [Fighting Financial Fraud with Targeted Friction](https://medium.com/airbnb-engineering/fighting-financial-fraud-with-targeted-friction-82d950d8900e)
-- Example process dealing with imbalanced data in a take-home interview project [Important three techniques to improve machine learning model performance with imbalance datasets](https://towardsdatascience.com/working-with-highly-imbalanced-datasets-in-machine-learning-projects-c70c5f2a7b16) 
+- Example process dealing with imbalanced data in a take-home interview project [Important three techniques to improve machine learning model performance with imbalance datasets](https://towardsdatascience.com/working-with-highly-imbalanced-datasets-in-machine-learning-projects-c70c5f2a7b16)
+- Probably the best resource for working and reasoning through imbalanced data: [Learning from Imbalanced Classes](https://www.svds.com/tbt-learning-imbalanced-classes/)
+
+### Further Resources:
+- [`imbalanced-learn` offers resampling techniques](https://github.com/scikit-learn-contrib/imbalanced-learn)
+- [Walkthrough + code for thresholding to make decisions](https://blog.insightdatascience.com/visualizing-machine-learning-thresholds-to-make-better-business-decisions-4ab07f823415)
